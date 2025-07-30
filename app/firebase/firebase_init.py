@@ -1,6 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
-from backend.core.config import settings
+from app.config import settings
 
 firebase_app = None
 _firestore_db = None
@@ -13,10 +13,8 @@ def init_firebase():
         firebase_app = firebase_admin.initialize_app(cred, {
             "storageBucket": f"{settings.firebase_project_id}.appspot.com"
         })
-
         _firestore_db = firestore.client()
         _firebase_bucket = storage.bucket()
-        print("✅ Firebase initialized")
 
 def get_firestore_db():
     return _firestore_db

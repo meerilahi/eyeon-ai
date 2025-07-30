@@ -1,5 +1,9 @@
 fastapi
 uvicorn
+langchain
+langgraph
 firebase-admin
+openai
 python-dotenv
-pydantic
+opencv-python
+ffmpeg-python
