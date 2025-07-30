@@ -6,9 +6,10 @@ from app.firebase.firebase_init import init_firebase
 # from app.core.scheduler import start_loops
 
 @contextlib.asynccontextmanager
-async def startup_event():
-    await init_firebase()
+async def startup_event(app: FastAPI):
+    init_firebase()
     # await start_loops()
+    yield
 
 app = FastAPI(
     title="EyeOn AI Backend",
