@@ -26,5 +26,4 @@ def delete_event(user_id: str, event_id: str):
     """Delete an active surveillance event."""
     return delete_event_by_id(user_id, event_id)
 
-# Export list of tools
 tools = [create_event, read_events, update_event, delete_event]

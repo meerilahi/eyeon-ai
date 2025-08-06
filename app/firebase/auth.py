@@ -1,5 +1,5 @@
 from firebase_admin import auth
-from fastapi import Depends, HTTPException, status, Header
+from fastapi import HTTPException, status, Header
 
 
 async def verify_firebase_token(authorization: str = Header(...)):

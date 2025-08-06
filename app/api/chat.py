@@ -1,15 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from app.models.chat import ChatRequest, ChatResponse
 from app.agent.chatbot_agent import run_chatbot_agent
-from app.firebase.auth import verify_firebase_token
 
 router = APIRouter()
 
 @router.post("/", response_model=ChatResponse)
 
-async def chat_with_agent(request: ChatRequest, firebase_user: dict = Depends(verify_firebase_token)):
+async def chat_with_agent(request: ChatRequest, user_id):
     try:
-        user_id = firebase_user["uid"]
         reply = await run_chatbot_agent(request.message, user_id)
         return ChatResponse(reply=reply)
     except Exception as e:

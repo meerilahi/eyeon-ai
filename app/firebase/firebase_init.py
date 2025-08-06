@@ -1,6 +1,8 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
-from app.config import settings
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 firebase_app = None
 _firestore_db = None
@@ -9,9 +11,9 @@ _firebase_bucket = None
 def init_firebase():
     global firebase_app, _firestore_db, _firebase_bucket
     if not firebase_admin._apps:
-        cred = credentials.Certificate(settings.firebase_creds_path)
+        cred = credentials.Certificate(os.environ["firebase_creds_path"])
         firebase_app = firebase_admin.initialize_app(cred, {
-            "storageBucket": f"{settings.firebase_project_id}.appspot.com"
+            "storageBucket": f"{os.environ["firebase_project_id"]}.appspot.com"
         })
         _firestore_db = firestore.client()
         _firebase_bucket = storage.bucket()
