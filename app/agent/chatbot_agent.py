@@ -30,11 +30,9 @@ system_message = SystemMessage(
 def assistant_node(state: ChatbotState):
     messages = state["messages"]
     summary = state.get("summary")
-
     if summary:
         context = SystemMessage(content=f"Summary of earlier conversation: {summary}")
         messages = [context] + messages
-
     response = llm_with_tools.invoke(messages)
     return {"messages": [response]}
 
@@ -49,8 +47,6 @@ def summarize_conversation(state: ChatbotState):
     )
     messages = state["messages"] + [HumanMessage(content=summary_prompt)]
     response = llm.invoke(messages)
-
-    # Keep only last 2 messages
     recent = state["messages"][-2:]
     delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-2]]
 
