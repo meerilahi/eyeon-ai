@@ -27,32 +27,6 @@
 
 ---
 
-## 🗂️ Project Structure
-
-```
-eyeon-ai/
-├── agents/                # Graph-based agent workflows (chat, monitor, alert)
-│   └── chat_agent/
-│   └── monitor_agent/
-│   └── alert_agent/
-├── llms/                  # Wrappers for LLMs and VLMs
-│   └── llm_interface.py
-│   └── vlm_interface.py
-├── backend/               # FastAPI app
-│   └── api/
-│   └── main.py
-│   └── auth/
-│   └── db/
-├── shared_state/          # Memory state module (DB sync logic)
-│   └── state.py
-├── scripts/               # Utility scripts (setup, monitoring, testing)
-├── tests/                 # Unit and integration tests
-├── requirements.txt
-└── README.md
-```
-
----
-
 ## 🧪 Tech Stack
 
 | Component       | Tech                            |
@@ -65,39 +39,7 @@ eyeon-ai/
 | Frontend        | Flutter                         |
 | Deployment      | Docker, GPU-backed servers      |
 
----
 
-## 🛠️ How to Run (MVP Setup)
-
-1. **Clone the Repo**
-
-```bash
-git clone https://github.com/your-username/eyeon-ai.git
-cd eyeon-ai
-```
-
-2. **Install Requirements**
-
-```bash
-pip install -r requirements.txt
-```
-
-3. **Run Backend (FastAPI)**
-
-```bash
-cd backend
-uvicorn main:app --reload
-```
-
-4. **Start Agents**
-
-Each agent can be started independently via CLI or script:
-
-```bash
-python agents/chat_agent/main.py
-python agents/monitor_agent/main.py
-python agents/alert_agent/main.py
-```
 
 5. **Connect to Cameras & Define Events**
 
