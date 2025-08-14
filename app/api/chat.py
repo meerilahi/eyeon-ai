@@ -1,15 +1,18 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from app.models.chat import ChatRequest, ChatResponse
-from app.agent.chatbot_agent import run_chatbot_agent
+from app.chatbot.chatbot import run_chatbot_agent
+from app.supabase.auth import get_user
 
 router = APIRouter()
 
 @router.post("/", response_model=ChatResponse)
 
-async def chat(request: ChatRequest, user_id):
+async def chat(request: ChatRequest, user: str = Depends(get_user)):
     try:
-        reply = await run_chatbot_agent(request.message, user_id)
-        return ChatResponse(reply=reply)
+        print(f"User ID: {user.get('id')}")
+        print(f"Message: {request.message}")
+        reply = await run_chatbot_agent(request.message, user.get("id"))
+        return ChatResponse(reply="reply")
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
