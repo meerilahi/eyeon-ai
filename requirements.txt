@@ -1,9 +1,7 @@
 fastapi
 uvicorn
 langchain
+langchain-openai
 langgraph
-firebase-admin
-openai
+langgraph-checkpoint-postgres
 python-dotenv
-opencv-python
-ffmpeg-python

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Request
+from fastapi import APIRouter, HTTPException, status
 from app.models.chat import ChatRequest, ChatResponse
 from app.agent.chatbot_agent import run_chatbot_agent
 
@@ -6,7 +6,7 @@ router = APIRouter()
 
 @router.post("/", response_model=ChatResponse)
 
-async def chat_with_agent(request: ChatRequest, user_id):
+async def chat(request: ChatRequest, user_id):
     try:
         reply = await run_chatbot_agent(request.message, user_id)
         return ChatResponse(reply=reply)
