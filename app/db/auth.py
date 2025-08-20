@@ -26,3 +26,4 @@ def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
             detail="Invalid or expired token"
         )
     return res.json()
+
